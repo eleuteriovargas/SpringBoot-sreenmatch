@@ -18,9 +18,9 @@ public class ConsumoAPI {
                     .send(request, HttpResponse.BodyHandlers.ofString());
 
             // Verificar si la respuesta fue exitosa
-            if (response.statusCode() != 200) {
-                throw new RuntimeException("Error al consultar la API: " + response.body());
-            }
+//            if (response.statusCode() != 200) {
+//                throw new RuntimeException("Error al consultar la API: " + response.body());
+//            }
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }

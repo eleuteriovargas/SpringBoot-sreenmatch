@@ -12,5 +12,4 @@ public record DatosTemporadas(
 
        @JsonAlias("Episodes") List<DatosEpisodio> episodios
 
-) {
-}
+) { }
