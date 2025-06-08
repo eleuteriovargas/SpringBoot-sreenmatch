@@ -1,9 +1,6 @@
 package com.vargas.screenmatch.principal;
 
-import com.vargas.screenmatch.model.DatosEpisodio;
-import com.vargas.screenmatch.model.DatosSerie;
-import com.vargas.screenmatch.model.DatosTemporadas;
-import com.vargas.screenmatch.model.Episodio;
+import com.vargas.screenmatch.model.*;
 import com.vargas.screenmatch.service.ConsumoAPI;
 import com.vargas.screenmatch.service.ConvierteDatos;
 
@@ -16,10 +13,16 @@ import java.util.stream.Stream;
 
 public class Principal {
     private Scanner teclado = new Scanner(System.in);
+
     private ConsumoAPI consumoApi = new ConsumoAPI();
+
     private final String URL_BASE = "https://www.omdbapi.com/?t=";
+
     private final String API_KEY = "&apikey=992CF187";
+
     private ConvierteDatos conversor = new ConvierteDatos();
+
+    private List<DatosSerie> datosSeries = new ArrayList<>();
 
     public void muestraElMenu() {
         var opcion = -1;
@@ -42,7 +45,9 @@ public class Principal {
                 case 2:
                     buscarEpisodioPorSerie();
                     break;
-
+                case 3:
+                    mostrarSeriesBuscadas();
+                    break;
                 case 0:
                     System.out.println("Cerrando la aplicación...");
                     break;
@@ -52,6 +57,7 @@ public class Principal {
         }
 
     }
+
 
     private DatosSerie getDatosSerie() {
         System.out.println("Escribe el nombre de la serie que deseas buscar");
@@ -74,8 +80,26 @@ public class Principal {
     }
     private void buscarSerieWeb() {
         DatosSerie datos = getDatosSerie();
-        System.out.println(datos);
+        datosSeries.add(datos);
+        //System.out.println(datos);
     }
+
+    private void mostrarSeriesBuscadas() {
+        List<Serie> series = new ArrayList<>();
+        series = datosSeries.stream()
+                .map(d -> new Serie(d))
+                .collect(Collectors.toList());
+
+
+        series.stream()
+                .sorted(Comparator.comparing(Serie::getGenero))
+                .forEach(System.out::println);
+
+
+
+
+    }
+
 
 
 }
