@@ -1,6 +1,7 @@
 package com.vargas.screenmatch.principal;
 
 import com.vargas.screenmatch.model.*;
+import com.vargas.screenmatch.repository.SerieRepository;
 import com.vargas.screenmatch.service.ConsumoAPI;
 import com.vargas.screenmatch.service.ConvierteDatos;
 
@@ -18,13 +19,23 @@ public class Principal {
 
     private final String URL_BASE = "https://www.omdbapi.com/?t=";
 
-    private final String API_KEY = "&apikey=992CF187";
+    private final String API_KEY = "&apikey=${API_KEY_OMDB}";
 
     private ConvierteDatos conversor = new ConvierteDatos();
 
     private List<DatosSerie> datosSeries = new ArrayList<>();
 
+    private SerieRepository repositorio;
+
+    public Principal(SerieRepository repository) {
+        this.repositorio = repository;
+    }
+
     public void muestraElMenu() {
+
+
+
+
         var opcion = -1;
         while (opcion != 0) {
             var menu = """
@@ -80,15 +91,15 @@ public class Principal {
     }
     private void buscarSerieWeb() {
         DatosSerie datos = getDatosSerie();
-        datosSeries.add(datos);
+        Serie serie = new Serie(datos);
+        repositorio.save(serie);
+
+        //datosSeries.add(datos);
         //System.out.println(datos);
     }
 
     private void mostrarSeriesBuscadas() {
-        List<Serie> series = new ArrayList<>();
-        series = datosSeries.stream()
-                .map(d -> new Serie(d))
-                .collect(Collectors.toList());
+        List<Serie> series = repositorio.findAll();
 
 
         series.stream()

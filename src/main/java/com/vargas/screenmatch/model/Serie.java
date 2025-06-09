@@ -1,29 +1,47 @@
 package com.vargas.screenmatch.model;
 
 
-import com.vargas.screenmatch.service.ConsultaGemini;
+//import com.vargas.screenmatch.service.ConsultaGemini;
 
 
 
+import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.OptionalDouble;
+
+@Entity
+@Table(name="series")
 
 public class Serie {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
+
+    @Column(unique = true)
     private String titulo;
 
     private Integer totalDeTemporadas;
 
     private Double evaluacion;
 
-    private Categoria genero;
 
-   private ConsultaGemini consultaGemini;
+    @Enumerated(EnumType.STRING)
+    private Categoria genero;
 
     private String sinopsis;
 
     private String poster;
 
     private String actores;
+
+    @Transient
+    private List<Episodio>episodios;
+
+    public Serie(){
+
+    }
 
     public Serie(DatosSerie datosSerie){
         this.titulo = datosSerie.titulo();
@@ -32,9 +50,18 @@ public class Serie {
         this.poster = datosSerie.poster();
         this.genero = Categoria.fromString(datosSerie.genero().split(",") [0].trim());
         this.actores = datosSerie.actores();
-        this.sinopsis = ConsultaGemini.obtenerTraduccion(datosSerie.sinopsis());
+        this.sinopsis = datosSerie.sinopsis();
+        //this.sinopsis = ConsultaGemini.obtenerTraduccion(datosSerie.sinopsis());
 
 
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
     }
 
     public String getTitulo() {
