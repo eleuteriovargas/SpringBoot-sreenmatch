@@ -1,25 +1,30 @@
 package com.vargas.screenmatch.model;
 
+import java.text.Normalizer;
+
 import static java.awt.SystemColor.text;
 
 public enum Categoria {
 
-    ACCION("Action"),
+    ACCION("Action", "Acción"),
 
-    ROMANCE("Romance"),
+    ROMANCE("Romance", "Romance"),
 
-    COMEDIA("Comedy"),
+    COMEDIA("Comedy", "Comedia"),
 
-    DRAMA("Drama"),
+    DRAMA("Drama", "Drama"),
 
-    CRIMEN("Crime"),
+    CRIMEN("Crime", "Crimen"),
 
-    AVENTURA("Adventure");
+    AVENTURA("Adventure", "Aventura");
 
     private String categoriaOmdb;
 
-    Categoria(String categoriaOmdb) {
+    private String categoriaEspanol;
+
+    Categoria(String categoriaOmdb, String categoriaEspanol) {
         this.categoriaOmdb = categoriaOmdb;
+        this.categoriaEspanol = categoriaEspanol;
     }
 
     public static Categoria fromString(String text) {
@@ -31,11 +36,38 @@ public enum Categoria {
         throw new IllegalStateException("Ninguna categoria encontrada: " + text);
     }
 
+//    public static Categoria fromEspanol(String text) {
+//        for (Categoria categoria : Categoria.values()){
+//            if (categoria.categoriaEspanol.equalsIgnoreCase(text)){
+//                return categoria;
+//            }
+//        }
+//        throw new IllegalStateException("Ninguna categoria encontrada: " + text);
+//    }
+
+
+    public static Categoria fromEspanol(String text) {
+        String normalizedInput = Normalizer.normalize(text, Normalizer.Form.NFD)
+                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
+                .toLowerCase();
+
+        for (Categoria categoria : Categoria.values()) {
+            String normalizedCategoria = Normalizer.normalize(categoria.getCategoriaEspanol(), Normalizer.Form.NFD)
+                    .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
+                    .toLowerCase();
+
+            if (normalizedCategoria.equals(normalizedInput)) {
+                return categoria;
+            }
+        }
+        throw new IllegalStateException("Ninguna categoria encontrada: " + text);
+    }
     public String getCategoriaOmdb() {
         return categoriaOmdb;
     }
 
-    public void setCategoriaOmdb(String categoriaOmdb) {
-        this.categoriaOmdb = categoriaOmdb;
+    public String getCategoriaEspanol() {
+        return categoriaEspanol;
     }
+
 }
