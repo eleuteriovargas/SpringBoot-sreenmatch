@@ -37,7 +37,7 @@ public class Serie {
     private String actores;
 
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Episodio>episodios;
+    private List<Episodio> episodios;
 
     public Serie(){
 
