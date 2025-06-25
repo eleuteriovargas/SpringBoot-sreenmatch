@@ -20,7 +20,7 @@ public class Principal {
     private ConvierteDatos conversor = new ConvierteDatos();
 
     private List<DatosSerie> datosSeries = new ArrayList<>();
-
+//
     private SerieRepository repository;
 
     private List<Serie> series = new ArrayList<>();
