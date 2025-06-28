@@ -1,0 +1,99 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: white;
+}
+
+.dropdown-select {
+    width: 30%;
+    margin: 0;
+    padding: 6px 8px 6px 10px;
+    height: 40px; 
+    line-height: 20px; 
+    font-size: 16px;
+    color: #62717a;
+    text-shadow: 0 1px white;
+    background: #f2f2f2;
+  }
+
+  /* styles.css */
+body {
+    font-family: 'Inter', sans-serif;
+    color: white;
+    background: linear-gradient(180.61deg, #000000 25.16%, #04254f 80%, #409ecd 100%);
+    min-height: 100vh;
+}
+
+/* Estilos para las listas de series - BASE */
+.lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    list-style: none;
+}
+
+.lista img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.lista img:hover {
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* styles.css */
+/* Estilos generales para todas las tarjetas de series */
+.serie-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    background: #1a2a3a;
+}
+
+.serie-card:hover {
+    transform: scale(1.03);
+}
+
+.serie-info {
+    padding: 12px;
+}
+
+.serie-info h3 {
+    color: white;
+    margin: 8px 0 4px;
+    font-size: 1.1rem;
+}
+
+.serie-info p {
+    color: #a0a0a0;
+    margin: 4px 0;
+    font-size: 0.9rem;
+}
+
+.genero {
+    color: #409ecd !important; /* Sobreescribe otros estilos */
+    font-weight: bold;
+}
+
+/* Estilos para el placeholder SVG */
+.serie-card img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    background: #2d3b4a; /* Fondo para mientras carga */
+} 
