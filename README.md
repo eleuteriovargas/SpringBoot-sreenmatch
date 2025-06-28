@@ -3,12 +3,13 @@ ScreenMatch - Plataforma de Series y Películas 🎬
 ScreenMatch es una aplicación web desarrollada con Spring Boot (Backend) y HTML/CSS/JavaScript (Frontend) que permite explorar información sobre series de televisión, incluyendo detalles de temporadas, episodios, actores y más.
 📌 Características Principales
 
-✅ Catálogo de series
-✅ Búsqueda por categorías (Acción, Drama, Comedia, etc.)
-✅ Detalles de episodios y temporadas
-✅ Top 5 series mejor valoradas
-✅ Lanzamientos más recientes
-✅ Diseño responsive
+    - Catálogo de series
+    - Búsqueda por categorías (Acción, Drama, Comedia, etc.)
+    - Detalles de episodios y temporadas
+    - Top 5 series mejor valoradas
+    - Lanzamientos más recientes
+    - Diseño responsive
+
 🛠 Tecnologías Utilizadas
 Backend (API REST)
 
