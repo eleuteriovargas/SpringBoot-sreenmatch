@@ -1,69 +1,57 @@
-# Proyecto JPA: Consultas y Manejo de Datos
+ScreenMatch - Plataforma de Series y Películas 🎬
 
-Este proyecto es parte de un curso o aprendizaje autodidacta sobre **Java Persistence API (JPA)**, donde exploramos diferentes formas de realizar consultas a bases de datos utilizando JPA, SQL y JPQL.
+ScreenMatch es una aplicación web desarrollada con Spring Boot (Backend) y HTML/CSS/JavaScript (Frontend) que permite explorar información sobre series de televisión, incluyendo detalles de temporadas, episodios, actores y más.
+📌 Características Principales
 
-En este proyecto, cubrimos los siguientes temas:
+✅ Catálogo de series
+✅ Búsqueda por categorías (Acción, Drama, Comedia, etc.)
+✅ Detalles de episodios y temporadas
+✅ Top 5 series mejor valoradas
+✅ Lanzamientos más recientes
+✅ Diseño responsive
+🛠 Tecnologías Utilizadas
+Backend (API REST)
 
-### Tipos de consultas en JPA
-- **Consultas derivadas**: Métodos que se generan automáticamente a partir del nombre del método en el repositorio.
-- **Consultas nativas (`nativeQuery`)**: Consultas SQL puras para casos específicos.
-- **JPQL (Java Persistence Query Language)**: Lenguaje de consulta orientado a objetos proporcionado por JPA.
+    Java 17
 
-### Métodos personalizados y legibles
-- Uso de `@Query` para definir consultas JPQL personalizadas y mejorar la legibilidad del código.
-- Ejemplo:
-  ```java
-  @Query("SELECT s FROM Serie s WHERE s.titulo LIKE %:titulo%")
-  List<Serie> buscarPorTitulo(String titulo);
+    Spring Boot 3
 
-  📊 Expresiones SQL útiles
+    Spring Data JPA
 
-    Uso de LIKE para búsquedas parciales.
+    H2 Database / MySQL (según configuración)
 
-    Ordenamiento con ORDER BY.
+    Maven
 
-    Limitación de resultados con LIMIT (o equivalente en JPQL).
+Frontend
 
-🔗 Recuperación de información relacionada
+    HTML5
 
-    Consultas con JOIN para obtener datos de entidades relacionadas (por ejemplo, episodios de una serie).
+    CSS3
 
-    Ejemplo:
-    java
+    JavaScript (ES6+)
 
-    @Query("SELECT e FROM Episodio e JOIN e.serie s WHERE s.id = :serieId")
-    List<Episodio> obtenerEpisodiosPorSerie(Long serieId);
+    Omdb API (para consumo de endpoints)
 
-📅 Manejo de fechas en SQL vs Java
-    Comparación entre el manejo de fechas en SQL (como la función YEAR) y Java (con java.time).
 
-    Ejemplo de consulta con fecha:
-    java
-    @Query("SELECT s FROM Serie s WHERE YEAR(s.fechaEstreno) = :anio")
-    List<Serie> buscarPorAnioDeLanzamiento(int anio);
-
-🛠 Tecnologías utilizadas
-
-    Java (con Spring Boot o Jakarta EE, dependiendo del proyecto).
-
-    JPA (Hibernate u otra implementación).
-
-    Base de datos relacional (MySQL, PostgreSQL, H2, etc.).
-
-🚀 Cómo ejecutar el proyecto
-
-    Clona el repositorio:
-    bash
-
-git clone [tu-repositorio]
-
-Configura la base de datos en application.properties.
-
-Ejecuta la aplicación con:
+Ejecutar el Backend (Spring Boot)
 bash
 
-    ./mvnw spring-boot:run  # Si usas Maven
+    cd backend
+    mvn spring-boot:run
 
-¡Gracias por visitar mi repositorio! Si tienes sugerencias o mejoras, ¡no dudes en hacer un PR! 😊
-text
+        La API estará disponible en http://localhost:8080
 
+    Ejecutar el Frontend
+
+        Abrir frontend/index.html con Live Server (VS Code) o cualquier servidor web estático.
+
+        La app estará disponible en http://localhost:5500
+
+
+🔍 Endpoints de la API
+Método	Endpoint	Descripción
+GET	/series	Obtiene todas las series
+GET	/series/top5	Top 5 mejor evaluadas
+GET	/series/{id}	Detalles de una serie
+GET	/series/{id}/temporadas/todas	Temporadas y episodios
+GET	/series/categoria/{genero}	Filtra por categoría
