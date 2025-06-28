@@ -17,7 +17,9 @@ public record DatosSerie(
 
                         @JsonAlias("Poster") String poster,
 
-                        @JsonAlias("Actors") String actores
+                        @JsonAlias("Actors") String actores,
+
+                        @JsonAlias("Action") String accion
                         )
 
 {

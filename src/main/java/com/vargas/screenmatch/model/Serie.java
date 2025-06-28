@@ -36,6 +36,9 @@ public class Serie {
 
     private String actores;
 
+
+    private String accion;
+
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodios;
 
@@ -51,6 +54,7 @@ public class Serie {
         this.genero = Categoria.fromString(datosSerie.genero().split(",") [0].trim());
         this.actores = datosSerie.actores();
         this.sinopsis = datosSerie.sinopsis();
+        this.accion = datosSerie.accion();
         //this.sinopsis = ConsultaGemini.obtenerTraduccion(datosSerie.sinopsis());
 
 
@@ -128,6 +132,15 @@ public class Serie {
         episodios.forEach(e -> e.setSerie(this));
         this.episodios = episodios;
     }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
+    }
+
 
     @Override
     public String toString() {
